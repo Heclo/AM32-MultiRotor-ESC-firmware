@@ -264,12 +264,7 @@
 #define FIRMWARE_NAME           "MTCU BLDC Module"
 #define DEAD_TIME               45
 #define HARDWARE_GROUP_F0_I
-#define MILLIVOLT_PER_AMP       65
-#define CURRENT_OFFSET          0
-#define TARGET_VOLTAGE_DIVIDER  110
-#define PA3_VOLTAGE
 #define USE_SERIAL_TELEMETRY
-#define TARGET_STALL_PROTECTION_INTERVAL 9000
 #endif
 
 /*******************************   G071 Targets *********************************/
