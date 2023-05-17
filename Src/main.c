@@ -210,7 +210,7 @@ uint32_t MINIMUM_RPM_SPEED_CONTROL = 200;
 
  //assign speed control PID values values are x10000
  fastPID speedPid = {      //commutation speed loop time
- 		.Kp = 10,
+ 		.Kp = 5,
  		.Ki = 1,
  		.Kd = 100,
  		.integral_limit = 10000,
@@ -248,7 +248,7 @@ char eeprom_layout_version = 2;
 char dir_reversed = 0;
 char comp_pwm = 1;
 char VARIABLE_PWM = 1;
-char bi_direction = 0;
+char bi_direction = 1;
 char stuck_rotor_protection = 0;	// Turn off for Crawlers
 char brake_on_stop = 1;
 char stall_protection = 0;
@@ -273,7 +273,7 @@ char do_once_sinemode= 0;
 uint16_t servo_low_threshold = 1100;	// anything below this point considered 0
 uint16_t servo_high_threshold = 1900;	// anything above this point considered 2000 (max)
 uint16_t servo_neutral = 1500;
-uint8_t servo_dead_band = 50;
+uint8_t servo_dead_band = 30;
 
 //========================= Battery Cuttoff Settings ========================
 char LOW_VOLTAGE_CUTOFF = 0;		// Turn Low Voltage CUTOFF on or off
