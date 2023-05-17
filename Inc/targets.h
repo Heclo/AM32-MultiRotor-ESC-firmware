@@ -263,7 +263,7 @@
 #define FILE_NAME				"MTCU_BLDC_MODULE"
 #define FIRMWARE_NAME           "MTCU BLDC Module"
 #define DEAD_TIME               45
-#define HARDWARE_GROUP_F0_I
+#define HARDWARE_GROUP_F0_E
 #define USE_SERIAL_TELEMETRY
 #endif
 
