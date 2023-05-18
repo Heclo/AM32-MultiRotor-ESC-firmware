@@ -212,7 +212,7 @@ uint32_t MINIMUM_RPM_SPEED_CONTROL = 50;
  fastPID speedPid = {      //commutation speed loop time
  		.Kp = 10,
  		.Ki = 0,
- 		.Kd = 1,
+ 		.Kd = 0,
  		.integral_limit = 10000,
  		.output_limit = 50000
  };
