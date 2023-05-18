@@ -206,7 +206,7 @@
 
 uint8_t drive_by_rpm = 1;
 uint32_t MAXIMUM_RPM_SPEED_CONTROL = 10800;
-uint32_t MINIMUM_RPM_SPEED_CONTROL = 300;
+uint32_t MINIMUM_RPM_SPEED_CONTROL = 50;
 
  //assign speed control PID values values are x10000
  fastPID speedPid = {      //commutation speed loop time
@@ -1833,7 +1833,7 @@ if(newinput > 2000){
         {
           if (use_sin_start)
           {
-            target_e_com_time = 60000000 / map(adjusted_input, (sine_mode_changeover_thottle_level * 20), 2047, MINIMUM_RPM_SPEED_CONTROL, MAXIMUM_RPM_SPEED_CONTROL) / (motor_poles / 2);
+            target_e_com_time = 60000000 / map(adjusted_input, 47, 2047, MINIMUM_RPM_SPEED_CONTROL, MAXIMUM_RPM_SPEED_CONTROL) / (motor_poles / 2);
             if (adjusted_input < 30)
             { // dead band ?
               input = 0;
