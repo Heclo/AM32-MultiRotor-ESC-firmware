@@ -915,7 +915,7 @@ if(average_interval > 2000 && (stall_protection || RC_CAR_REVERSE)){
 	  if(input_override < 0){
 		  input_override = 0;
 	  }
-	  if (zero_crosses < 100)
+	  if (zero_crosses < 1000)
     	{
       		speedPid.Kp = 1;
       		speedPid.integral = 0;
