@@ -1826,50 +1826,99 @@ if(newinput > 2000){
 #ifdef FIXED_DUTY_MODE
   			input = FIXED_DUTY_MODE_POWER * 20 + 47;
 #else
-	  	  	if(use_sin_start){
-  				if(adjusted_input < 30){           // dead band ?
-  					input= 0;
-  					}
+      if (use_sin_start)
+      {
+        if (adjusted_input < 30)
+        { // dead band ?
+          input = 0;
+        }
 
-  					if(adjusted_input > 30 && adjusted_input < (sine_mode_changeover_thottle_level * 20)){
-  					input= map(adjusted_input, 30 , (sine_mode_changeover_thottle_level * 20) , 47 ,160);
-  					}
-  					if(adjusted_input >= (sine_mode_changeover_thottle_level * 20)){
-  					input = map(adjusted_input , (sine_mode_changeover_thottle_level * 20) ,2047 , 160, 2047);
-  					}
-  				}else{
-  					if(use_speed_control_loop){
-  					  if (drive_by_rpm){
- 						target_e_com_time = 60000000 / map(adjusted_input , 47 ,2047 , MINIMUM_RPM_SPEED_CONTROL, MAXIMUM_RPM_SPEED_CONTROL) / (motor_poles/2);
-  		  				if(adjusted_input < 47){           // dead band ?
-  		  					input= 0;
-  		  					speedPid.error = 0;
-  		  				    input_override = 0;
-  		  				}else{
-  	  						input = (uint16_t)input_override;  // speed control pid override
-  	  						if(input_override > 2047){
-  	  							input = 2047;
-  	  						}
-  	  						if(input_override < 48){
-  	  							input = 48;
-  	  						}
-  		  				}
-					    }else{
+        if (adjusted_input > 30 && adjusted_input < (sine_mode_changeover_thottle_level * 20))
+        {
+          input = map(adjusted_input, 30, (sine_mode_changeover_thottle_level * 20), 47, 160);
+        }
+        if (adjusted_input >= (sine_mode_changeover_thottle_level * 20))
+        {
+          input = map(adjusted_input, (sine_mode_changeover_thottle_level * 20), 2047, 160, 2047);
+        }
+      }
+      else
+      {
+        if (use_speed_control_loop)
+        {
+          if (drive_by_rpm)
+          {
+            if (use_sin_start)
+            {
+              target_e_com_time = 60000000 / map(adjusted_input, (sine_mode_changeover_thottle_level * 20), 2047, MINIMUM_RPM_SPEED_CONTROL, MAXIMUM_RPM_SPEED_CONTROL) / (motor_poles / 2);
+              if (adjusted_input < 30)
+              { // dead band ?
+                input = 0;
+                speedPid.error = 0;
+                input_override = 0;
+              }
+              else if (adjusted_input > 30 && adjusted_input < (sine_mode_changeover_thottle_level * 20))
+              {
+                input = map(adjusted_input, 30, (sine_mode_changeover_thottle_level * 20), 47, 160);
+              }
+              else
+              {  
+                input = (uint16_t)input_override; // speed control pid override
+                if (input_override > 2047)
+                {
+                  input = 2047;
+                }
+                if (input_override < 48)
+                {
+                  input = 48;
+                }              
+                //input = map(adjusted_input, (sine_mode_changeover_thottle_level * 20), 2047, 160, 2047);
+              }              
+            }
+            else
+            {
+              target_e_com_time = 60000000 / map(adjusted_input, 47, 2047, MINIMUM_RPM_SPEED_CONTROL, MAXIMUM_RPM_SPEED_CONTROL) / (motor_poles / 2);
 
-  						input = (uint16_t)input_override;  // speed control pid override
-  						if(input_override > 2047){
-  							input = 2047;
-  						}
-  						if(input_override < 48){
-  							input = 48;
-  						}
-					    }
-  					}else{
+              if (adjusted_input < 47)
+              { // dead band ?
+                input = 0;
+                speedPid.error = 0;
+                input_override = 0;
+              }
+              else
+              {
+                input = (uint16_t)input_override; // speed control pid override
+                if (input_override > 2047)
+                {
+                  input = 2047;
+                }
+                if (input_override < 48)
+                {
+                  input = 48;
+                }
+              }
+            }
+          }
+          else
+          {
 
-  						input = adjusted_input;
+            input = (uint16_t)input_override; // speed control pid override
+            if (input_override > 2047)
+            {
+              input = 2047;
+            }
+            if (input_override < 48)
+            {
+              input = 48;
+            }
+          }
+        }
+        else
+        {
 
-  					}
-  				}
+          input = adjusted_input;
+        }
+      }
 #endif
 	 	  }
 		  if ( stepper_sine == 0){
