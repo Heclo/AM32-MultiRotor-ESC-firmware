@@ -917,7 +917,7 @@ if(average_interval > 2000 && (stall_protection || RC_CAR_REVERSE)){
 	  }
 	  if (zero_crosses < 1000)
     	{
-      		speedPid.Kp = 3;
+      		speedPid.Kp = 2;
       		speedPid.integral = 0;
     	}
     	else
