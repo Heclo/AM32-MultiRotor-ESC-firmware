@@ -265,6 +265,9 @@
 #define DEAD_TIME               45
 #define HARDWARE_GROUP_F0_A
 #define USE_SERIAL_TELEMETRY
+#define MILLIVOLT_PER_AMP       50
+#define CURRENT_OFFSET          0
+#define TARGET_VOLTAGE_DIVIDER  55
 #endif
 
 /*******************************   G071 Targets *********************************/
@@ -473,6 +476,12 @@
 #define PHASE_A_COMP COMP_PA5
 #define PHASE_B_COMP COMP_PA4
 #define PHASE_C_COMP COMP_PA0
+
+#define CURRENT_SENSE_ADC_PIN        LL_GPIO_PIN_6
+#define VOLTAGE_SENSE_ADC_PIN        LL_GPIO_PIN_3
+
+#define CURRENT_ADC_CHANNEL         LL_ADC_CHANNEL_6
+#define VOLTAGE_ADC_CHANNEL         LL_ADC_CHANNEL_3
 
 #endif
 
