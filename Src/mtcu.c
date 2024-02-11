@@ -22,8 +22,8 @@ uint8_t mtcu_buffer[100] = {0};
   uint8_t Checksum = 0;
 };*/
 // uint16_t crsf_channels[16] = {0};
-uint32_t invalid_crc = 0;
-// static DataSentence Sentence; // A struct to store incoming commands
+// uint32_t invalid_crc = 0;
+//static DataSentence Sentence; // A struct to store incoming commands
 #define AddressA 131          // Device has two possible addresses, set by dipswitch
 #define AddressB 132          // These are within the range of addresses also used by Dimension Engineering Sabertooth devices (128-135)
 uint8_t MyAddress = AddressA; // Address of device. Set by dipswitch.
@@ -190,10 +190,10 @@ void ProcessCommand(DataSentence *sentence)
 void setChannelsMTCU()
 {
     uint8_t validData = 0;
-    if (mtcu_buffer[0] == MyAddress)
+    if (mtcu_buffer[1] == MyAddress)
     {
-        uint8_t check = (mtcu_buffer[0] + mtcu_buffer[1] + mtcu_buffer[2]) & 0x7F;
-        if (mtcu_buffer[3] == check)
+        uint8_t check = (mtcu_buffer[1] + mtcu_buffer[2] + mtcu_buffer[3]) & 0x7F;
+        if (mtcu_buffer[4] == check)
         {
             validData = 1;
         }
@@ -203,7 +203,7 @@ void setChannelsMTCU()
             input_line[i] = mtcu_buffer[i];
         }*/
     }
-    // uint8_t val;
+    //uint8_t val;
     /*Serial1.print(sentence->Address);
       Serial1.print(" ");
       Serial1.print(sentence->Command);
@@ -215,17 +215,17 @@ void setChannelsMTCU()
     //  Address bytes have values greater than 127
     if (validData == 1)
     {
-        switch (mtcu_buffer[1])
+        switch (mtcu_buffer[2])
         {
         case 0:
             // Motor 1 Forward
-            newinput = map(mtcu_buffer[2], 0, 127, 1000, 2000);
+            newinput = map(mtcu_buffer[3], 0, 127, 1000, 2000);
             // setSpeed(1, getSpeedCommand_fromSerial(mtcu_buffer[2]));
             break;
 
         case 1:
             // Motor 1 Reverse
-            newinput = map(mtcu_buffer[2], 0, 127, 1000, 0);
+            newinput = map(mtcu_buffer[3], 0, 127, 1000, 0);
             // setSpeed(1, -getSpeedCommand_fromSerial(mtcu_buffer[2]));
             break;
 
@@ -237,7 +237,7 @@ void setChannelsMTCU()
             // The function for converting volts to command data is Value = (desired volts-6) x 5
 
             // If valid value sent, update MinVoltage
-            if (mtcu_buffer[2] <= 50)
+            if (mtcu_buffer[3] <= 50)
             {
                 // MinVoltage = 6.0 + ((float)mtcu_buffer[2] * 0.2);
             }
@@ -281,7 +281,7 @@ void setChannelsMTCU()
             // The the value passed is 0 it will disable the watchdog, however the feature is disabled by default on each restart so you don't need to do anything if you don't want it.
             // Note also the serial watchdog has no effect when the Scout is running in RC mode.
 
-            if (mtcu_buffer[2] == 0)
+            if (mtcu_buffer[3] == 0)
             {
                 // SerialWatchdog = false;
             }
@@ -327,7 +327,7 @@ void setChannelsMTCU()
         // case  19 presently un-assigned
         case 19:
             // Throttle position
-            if (mtcu_buffer[2])
+            if (mtcu_buffer[3])
             {
                 // Throttle = mtcu_buffer[2];
             }
@@ -358,27 +358,27 @@ void setChannelsMTCU()
 
 #if defined REV1_3 || defined REV1_2
 #if defined HIGH_CURRENT
-            if (mtcu_buffer[2] > 0 && mtcu_buffer[2] <= 60)
+            if (mtcu_buffer[3] > 0 && mtcu_buffer[2] <= 60)
             {
-                MaxCurrent = mtcu_buffer[2];
+                MaxCurrent = mtcu_buffer[3];
             }
             else
             {
                 MaxCurrent = 60;
             }
 #elif defined LOW_CURRENT
-            if (mtcu_buffer[2] > 0 && mtcu_buffer[2] <= 6)
+            if (mtcu_buffer[3] > 0 && mtcu_buffer[2] <= 6)
             {
-                MaxCurrent = mtcu_buffer[2];
+                MaxCurrent = mtcu_buffer[3];
             }
             else
             {
                 MaxCurrent = 6;
             }
 #else
-            if (mtcu_buffer[2] > 0 && mtcu_buffer[2] <= 20)
+            if (mtcu_buffer[3] > 0 && mtcu_buffer[3] <= 20)
             {
-                MaxCurrent = mtcu_buffer[2];
+                MaxCurrent = mtcu_buffer[3];
             }
             else
             {
@@ -386,9 +386,9 @@ void setChannelsMTCU()
             }
 #endif
 #elif defined REV1_1
-            if (mtcu_buffer[2] > 0 && mtcu_buffer[2] <= 30)
+            if (mtcu_buffer[3] > 0 && mtcu_buffer[3] <= 30)
             {
-                MaxCurrent = mtcu_buffer[2];
+                MaxCurrent = mtcu_buffer[3];
             }
             else
             {
@@ -441,28 +441,28 @@ void setChannelsMTCU()
             break;
         case 25:
             // Max speed forward set by user in op config
-            if (mtcu_buffer[2])
+            if (mtcu_buffer[3])
             {
                 // MaxSpeedForward = mtcu_buffer[2];
             }
             break;
         case 26:
             // Max speed reverse set by user in op config
-            if (mtcu_buffer[2])
+            if (mtcu_buffer[3])
             {
                 // MaxSpeedReverse = mtcu_buffer[2];
             }
             break;
         case 27:
             // Torque modifier for the current selected gear 0-255 = 0 - 100%
-            if (mtcu_buffer[2])
+            if (mtcu_buffer[3])
             {
                 // GearTorque = mtcu_buffer[2];
             }
             break;
         case 46:
             // Throttle position
-            if (mtcu_buffer[2])
+            if (mtcu_buffer[3])
             {
                 // Throttle = mtcu_buffer[2];
 #ifdef uart_debug
@@ -473,7 +473,7 @@ void setChannelsMTCU()
             break;
         case 75:
             // Vehicle speed scaled by max speed values
-            if (mtcu_buffer[2])
+            if (mtcu_buffer[3])
             {
                 // vehicleSpeed = mtcu_buffer[2];
 #ifdef uart_debug
@@ -484,20 +484,7 @@ void setChannelsMTCU()
             break;
         default:
             break;
-            signaltimeout = 0;
-            if ((adjusted_input == 0) && !armed)
-            {
-                zero_input_count++;
-            }
-            else
-            {
-                zero_input_count = 0;
-            }
         }
-    }
-    else
-    {
-        invalid_crc++;
     }
 }
 
