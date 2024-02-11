@@ -574,11 +574,20 @@ void mtcu_UART_Init(void)
   /**USART1 GPIO Configuration
 
   PB6   ------> USART1_TX
+  PB7   ------> USART1_RX
   */
 
   GPIO_InitStruct.Pin = LL_GPIO_PIN_6;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
+  GPIO_InitStruct.Alternate = LL_GPIO_AF_0;
+  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_7;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
   GPIO_InitStruct.Alternate = LL_GPIO_AF_0;
   LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
@@ -607,7 +616,8 @@ void mtcu_UART_Init(void)
   USART_InitStruct.OverSampling = LL_USART_OVERSAMPLING_16;
   LL_USART_Init(USART1, &USART_InitStruct);
   LL_USART_DisableIT_CTS(USART1);
-  USART1->CR3 |= (1 << 3);  // half duplex
+  //USART1->CR3 |= (1 << 3);  // half duplex
+  LL_USART_ConfigAsyncMode(USART1);
   LL_USART_Enable(USART1);
 
 // set dma address
@@ -616,7 +626,7 @@ void mtcu_UART_Init(void)
                          (uint32_t)&mtcu_buffer,
                          LL_DMA_GetDataTransferDirection(DMA1, LL_DMA_CHANNEL_3));
   LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_3, 4);
-  USART1->CR1 |= (1<<4); // idle line interrupt
+  //USART1->CR1 |= (1<<4); // idle line interrupt
 }
 
 void receiveMTCU(){
