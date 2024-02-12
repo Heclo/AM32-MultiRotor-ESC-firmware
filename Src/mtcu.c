@@ -195,6 +195,7 @@ void setChannelsMTCU()
         uint8_t check = (mtcu_buffer[0] + mtcu_buffer[1] + mtcu_buffer[2]) & 0x7F;
         if (mtcu_buffer[3] == check)
         {
+          playBrushedStartupTune();
             validData = 1;
         }
         /*for(int i = 0; i<= SENTENCE_BYTES;i++)
