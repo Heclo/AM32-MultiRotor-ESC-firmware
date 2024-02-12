@@ -731,7 +731,7 @@ void loadEEpromSettings(){
 	   sine_mode_power = eepromBuffer[45];
 	   }
 
-
+	eepromBuffer[46] = AUTO_IN; // attempt to force dshot off	
 	   if(eepromBuffer[46] >= 0 && eepromBuffer[46] < 10){
 		   switch (eepromBuffer[46]){
 		   case AUTO_IN:
