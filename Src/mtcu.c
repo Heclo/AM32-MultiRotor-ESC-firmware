@@ -215,7 +215,7 @@ void setChannelsMTCU()
       //validData = 1;
       if (input_line[1] != 0)
       {
-        playDuskingTune();
+        //playDuskingTune();
       }
       if (input_line[2] != 0)
       {
