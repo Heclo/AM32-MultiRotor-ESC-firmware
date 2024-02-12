@@ -239,7 +239,7 @@ void playInputTune2(){
 	comStep(1);
 	delayMillis(75);
 	TIM1->PSC = 80;
-	delayMillis(75);
+	delayMillis(750);
 	TIM1->PSC = 90;
 	LL_IWDG_ReloadCounter(IWDG);
 	delayMillis(75);
@@ -260,9 +260,9 @@ void playInputTune(){
 	TIM1->PSC = 80;
 	setCaptureCompare();
 	comStep(3);
-	delayMillis(100);
-	TIM1->PSC = 70;
 	delayMillis(1000);
+	TIM1->PSC = 70;
+	delayMillis(100);
 	TIM1->PSC = 40;
 	delayMillis(100);
 	allOff();
@@ -296,7 +296,7 @@ void playChangedTone(){
 	delayMillis(150);
 	LL_IWDG_ReloadCounter(IWDG);
 	TIM1->PSC = 80;
-	delayMillis(1500);
+	delayMillis(150);
 	allOff();
 	TIM1->PSC = 0;
 	signaltimeout = 0;
