@@ -231,6 +231,7 @@ void setChannelsMTCU()
         {
           //playBrushedStartupTune();
           //playInputTune();
+          newinput = 1000;
             validData = 1;
         }
         /*for(int i = 0; i<= SENTENCE_BYTES;i++)
