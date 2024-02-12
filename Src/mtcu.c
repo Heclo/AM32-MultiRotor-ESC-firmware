@@ -229,7 +229,7 @@ void setChannelsMTCU()
         if (input_line[3] == check)
         {
           //playBrushedStartupTune();
-          playInputTune();
+          //playInputTune();
             validData = 1;
         }
         /*for(int i = 0; i<= SENTENCE_BYTES;i++)
