@@ -223,12 +223,13 @@ void setChannelsMTCU()
       }
        if (input_line[3] != 0)
       {
-        playInputTune();
+        //playInputTune();
       }
         uint8_t check = (input_line[0] + input_line[1] + input_line[2]) & 0x7F;
         if (input_line[3] == check)
         {
-          playBrushedStartupTune();
+          //playBrushedStartupTune();
+          playInputTune();
             validData = 1;
         }
         /*for(int i = 0; i<= SENTENCE_BYTES;i++)
