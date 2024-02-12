@@ -316,6 +316,10 @@ if(LL_USART_IsActiveFlag_IDLE(USART1)){
     receiveCRSF();
 #endif
 }
+#ifdef USE_MTCU_INPUT
+  setChannelsMTCU();
+  receiveMTCU();
+#endif
 
 
   /* USER CODE END USART1_IRQn 0 */
