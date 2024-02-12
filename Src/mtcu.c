@@ -219,7 +219,7 @@ void setChannelsMTCU()
       }
       if (input_line[2] != 0)
       {
-        playInputTune();
+        //playInputTune();
       }
        if (input_line[3] != 0)
       {
