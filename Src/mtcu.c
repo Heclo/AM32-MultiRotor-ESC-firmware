@@ -190,7 +190,7 @@ void ProcessCommand(DataSentence *sentence)
 void setChannelsMTCU()
 {
     uint8_t validData = 0;
-  static char input_line[4] = {0};
+  char input_line[4] = {0};
    /*if (mtcu_buffer[0] == MyAddress)
     {
       for(int i = 0; i< 4;i++)
