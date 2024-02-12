@@ -209,7 +209,7 @@ void playDuskingTune(){
 	TIM1->ARR = TIM1_AUTORELOAD;
 	comStep(2);       // activate a pwm channel
 	TIM1->PSC = 60;        // frequency of beep
-    delayMillis(200);         // duration of beep
+    delayMillis(1000);         // duration of beep
 	TIM1->PSC = 55;            // next beep is higher frequency
 	delayMillis(150);
 	TIM1->PSC = 50;         // higher again..
