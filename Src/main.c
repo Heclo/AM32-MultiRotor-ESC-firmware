@@ -1017,7 +1017,7 @@ if(!armed && (cell_count == 0)){
 	if(inputSet){
 		if(adjusted_input == 0){
 			armed_timeout_count++;
-			if(armed_timeout_count > 10000){    // one second
+			if(armed_timeout_count > 50000){    // one second
 				if(zero_input_count > 30){
 				armed = 1;
 				#ifdef USE_LED_STRIP
