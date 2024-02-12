@@ -1613,7 +1613,7 @@ loadEEpromSettings();
 #endif
 
 
-#ifdef USE_CRSF_INPUT
+#if defined(USE_CRSF_INPUT) || defined(USE_MTCU_INPUT)
 	inputSet = 1;
 	playStartupTune();
 	MX_IWDG_Init();
