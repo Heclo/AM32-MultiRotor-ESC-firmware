@@ -484,15 +484,15 @@ void setChannelsMTCU()
             break;
         default:
             break;
-signaltimeout = 0;
-            if ((adjusted_input == 0) && !armed)
-            {
-                zero_input_count++;
-            }
-            else
-            {
-                zero_input_count = 0;
-            }
+        }
+        signaltimeout = 0;
+        if ((adjusted_input == 0) && !armed)
+        {
+            zero_input_count++;
+        }
+        else
+        {
+            zero_input_count = 0;
         }
     }
     else
