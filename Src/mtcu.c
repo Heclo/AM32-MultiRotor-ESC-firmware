@@ -22,7 +22,7 @@ uint8_t mtcu_buffer[100] = {0};
   uint8_t Checksum = 0;
 };*/
 // uint16_t crsf_channels[16] = {0};
-// uint32_t invalid_crc = 0;
+uint32_t invalid_crc = 0;
 //static DataSentence Sentence; // A struct to store incoming commands
 #define AddressA 131          // Device has two possible addresses, set by dipswitch
 #define AddressB 132          // These are within the range of addresses also used by Dimension Engineering Sabertooth devices (128-135)
