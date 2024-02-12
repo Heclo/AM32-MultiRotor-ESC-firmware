@@ -209,6 +209,7 @@ void setChannelsMTCU()
     }*/
     if (input_line[0] == MyAddress) // for some reason mtcu_buffer[2] is the first byte in the buffer
     {
+      mtcu_buffer[0] = 1;
       //playBrushedStartupTune();
       playDuskingTune();
       //validData = 1;
