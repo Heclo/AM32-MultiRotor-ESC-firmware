@@ -629,12 +629,12 @@ void mtcu_UART_Init(void)
                          LL_USART_DMA_GetRegAddr(USART1, LL_USART_DMA_REG_DATA_RECEIVE),
                          (uint32_t)&mtcu_buffer,
                          LL_DMA_GetDataTransferDirection(DMA1, LL_DMA_CHANNEL_3));
-  LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_3, 5);
+  LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_3, 4);
   USART1->CR1 |= (1<<4); // idle line interrupt: is this the proper way?
 }
 
 void receiveMTCU(){
-	 LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_3, 5);
+	 LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_3, 4);
 	 LL_USART_EnableDMAReq_RX(USART1);
 	 LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_3);
 }
