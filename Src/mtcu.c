@@ -190,22 +190,23 @@ void ProcessCommand(DataSentence *sentence)
 void setChannelsMTCU()
 {
     uint8_t validData = 0;
-   /* if (mtcu_buffer[1] == MyAddress)
+   if (mtcu_buffer[0] == MyAddress)
     {
       playInputTune();
     }
-  if (mtcu_buffer[2] == MyAddress)
+  if (mtcu_buffer[1] == MyAddress)
     {
       playDuskingTune();
-    }*/
+    }
     if (mtcu_buffer[2] == MyAddress) // for some reason mtcu_buffer[2] is the first byte in the buffer
     {
-      playDuskingTune();
+      playBrushedStartupTune();
+      //playDuskingTune();
       //validData = 1;
         uint8_t check = (mtcu_buffer[2] + mtcu_buffer[3] + mtcu_buffer[4]) & 0x7F;
         if (mtcu_buffer[5] == check)
         {
-          playBrushedStartupTune();
+          //playBrushedStartupTune();
             validData = 1;
         }
         /*for(int i = 0; i<= SENTENCE_BYTES;i++)
