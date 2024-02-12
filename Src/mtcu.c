@@ -197,7 +197,7 @@ void setChannelsMTCU()
         {
             input_line[i] = mtcu_buffer[i];
         }
-      //playInputTune();
+      playInputTune();
     }
   /*if (mtcu_buffer[1] == MyAddress)
     {
@@ -206,12 +206,12 @@ void setChannelsMTCU()
     if (input_line[0] == MyAddress) // for some reason mtcu_buffer[2] is the first byte in the buffer
     {
       //playBrushedStartupTune();
-      //playDuskingTune();
+      playDuskingTune();
       //validData = 1;
         uint8_t check = (input_line[0] + input_line[1] + input_line[2]) & 0x7F;
         if (input_line[3] == check)
         {
-          //playBrushedStartupTune();
+          playBrushedStartupTune();
             validData = 1;
         }
         /*for(int i = 0; i<= SENTENCE_BYTES;i++)
