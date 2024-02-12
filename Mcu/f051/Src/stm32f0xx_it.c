@@ -29,6 +29,10 @@
 #include "crsf.h"
 #include "peripherals.h"
 #endif
+#ifdef USE_MTCU_INPUT
+#include "mtcu.h"
+#include "peripherals.h"
+#endif
 
 
 /* USER CODE BEGIN EV */
