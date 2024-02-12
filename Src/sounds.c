@@ -209,7 +209,7 @@ void playDuskingTune(){
 	TIM1->ARR = TIM1_AUTORELOAD;
 	comStep(2);       // activate a pwm channel
 	TIM1->PSC = 60;        // frequency of beep
-    delayMillis(1000);         // duration of beep
+    delayMillis(100);         // duration of beep
 	TIM1->PSC = 55;            // next beep is higher frequency
 	delayMillis(150);
 	TIM1->PSC = 50;         // higher again..
@@ -239,7 +239,7 @@ void playInputTune2(){
 	comStep(1);
 	delayMillis(75);
 	TIM1->PSC = 80;
-	delayMillis(750);
+	delayMillis(75);
 	TIM1->PSC = 90;
 	LL_IWDG_ReloadCounter(IWDG);
 	delayMillis(75);
@@ -260,7 +260,7 @@ void playInputTune(){
 	TIM1->PSC = 80;
 	setCaptureCompare();
 	comStep(3);
-	delayMillis(1000);
+	delayMillis(100);
 	TIM1->PSC = 70;
 	delayMillis(100);
 	TIM1->PSC = 40;
