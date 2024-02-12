@@ -262,7 +262,7 @@ void playInputTune(){
 	comStep(3);
 	delayMillis(100);
 	TIM1->PSC = 70;
-	delayMillis(100);
+	delayMillis(1000);
 	TIM1->PSC = 40;
 	delayMillis(100);
 	allOff();
