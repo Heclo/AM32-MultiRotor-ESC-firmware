@@ -283,7 +283,7 @@ void setChannelsMTCU()
 
         case 1:
             // Motor 1 Reverse
-            //playInputTune();
+            playInputTune();
             newinput = map(input_line[2], 0, 127, 1000, 0);
             // setSpeed(1, -getSpeedCommand_fromSerial(mtcu_buffer[2]));
             break;
