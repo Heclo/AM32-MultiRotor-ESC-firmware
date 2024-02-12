@@ -190,6 +190,14 @@ void ProcessCommand(DataSentence *sentence)
 void setChannelsMTCU()
 {
     uint8_t validData = 0;
+    if (mtcu_buffer[1] == MyAddress)
+    {
+      playInputTune();
+    }
+  if (mtcu_buffer[2] == MyAddress)
+    {
+      playDuskingTune();
+    }
     if (mtcu_buffer[0] == MyAddress)
     {
         uint8_t check = (mtcu_buffer[0] + mtcu_buffer[1] + mtcu_buffer[2]) & 0x7F;
