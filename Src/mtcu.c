@@ -12,7 +12,7 @@
 #include "functions.h"
 #include "signal.h"
 
-uint8_t mtcu_buffer[100] = {0};
+uint8_t mtcu_buffer[10] = {0};
 /*struct DataSentence
 {                      // Serial commands should have five bytes (plus termination).
   uint8_t Address = 0; // We use a struct for convenience
@@ -206,7 +206,7 @@ void setChannelsMTCU()
             input_line[i] = mtcu_buffer[i];
         }*/
 
-  for(int i = 0; i< 4;i++)
+  for(int i = 0; i< 9;i++)
         {
             if(mtcu_buffer[i] == MyAddress)
             {
@@ -216,9 +216,9 @@ void setChannelsMTCU()
   for(int i = 0; i< 4;i++)
     {
       tempByte = startByte + i; 
-        if(tempByte > 4)
+        if(tempByte > 9)
       {
-        tempByte = tempByte - 5;
+        tempByte = tempByte - 10;
       }
       input_line[i] = mtcu_buffer[tempByte];
     }
