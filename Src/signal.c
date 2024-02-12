@@ -59,7 +59,8 @@ void computeServoInput(){
 				servo_high_threshold =  servo_high_threshold - 25;
 				eepromBuffer[33] = (servo_high_threshold - 1750)/2;
 				high_calibration_set = 1;
-				playDefaultTone();
+				//playDefaultTone();
+				playInputTune();
 			}
 			}
 			last_high_threshold = servo_high_threshold;
