@@ -206,7 +206,7 @@ void setChannelsMTCU()
             input_line[i] = mtcu_buffer[i];
         }*/
 
-  for(int i = 0; i< 99;i++)
+  for(int i = 0; i< 100;i++)
         {
             if(mtcu_buffer[i] == MyAddress)
             {
@@ -249,7 +249,7 @@ void setChannelsMTCU()
         uint8_t check = (input_line[0] + input_line[1] + input_line[2]) & 0x7F;
         if (input_line[3] == check)
         {
-          playDuskingTune();
+          //playDuskingTune();
           //playBrushedStartupTune();
           //playInputTune();
           newinput = 1000;
