@@ -190,21 +190,26 @@ void ProcessCommand(DataSentence *sentence)
 void setChannelsMTCU()
 {
     uint8_t validData = 0;
+  uint8_t input_line[4] = {0};
    if (mtcu_buffer[0] == MyAddress)
     {
-      playInputTune();
+      for(int i = 0; i< 4;i++)
+        {
+            input_line[i] = mtcu_buffer[i];
+        }
+      //playInputTune();
     }
-  if (mtcu_buffer[1] == MyAddress)
+  /*if (mtcu_buffer[1] == MyAddress)
     {
       playDuskingTune();
-    }
-    if (mtcu_buffer[2] == MyAddress) // for some reason mtcu_buffer[2] is the first byte in the buffer
+    }*/
+    if (input_line[0] == MyAddress) // for some reason mtcu_buffer[2] is the first byte in the buffer
     {
-      playBrushedStartupTune();
+      //playBrushedStartupTune();
       //playDuskingTune();
       //validData = 1;
-        uint8_t check = (mtcu_buffer[2] + mtcu_buffer[3] + mtcu_buffer[4]) & 0x7F;
-        if (mtcu_buffer[5] == check)
+        uint8_t check = (input_line[0] + input_line[1] + input_line[2]) & 0x7F;
+        if (input_line[3] == check)
         {
           //playBrushedStartupTune();
             validData = 1;
@@ -227,17 +232,17 @@ void setChannelsMTCU()
     //  Address bytes have values greater than 127
     if (validData == 1)
     {
-        switch (mtcu_buffer[3])
+        switch (input_line[1])
         {
         case 0:
             // Motor 1 Forward
-            newinput = map(mtcu_buffer[4], 0, 127, 1000, 2000);
+            newinput = map(input_line[2], 0, 127, 1000, 2000);
             // setSpeed(1, getSpeedCommand_fromSerial(mtcu_buffer[2]));
             break;
 
         case 1:
             // Motor 1 Reverse
-            newinput = map(mtcu_buffer[4], 0, 127, 1000, 0);
+            newinput = map(input_line[2], 0, 127, 1000, 0);
             // setSpeed(1, -getSpeedCommand_fromSerial(mtcu_buffer[2]));
             break;
 
@@ -249,7 +254,7 @@ void setChannelsMTCU()
             // The function for converting volts to command data is Value = (desired volts-6) x 5
 
             // If valid value sent, update MinVoltage
-            if (mtcu_buffer[4] <= 50)
+            if (input_line[2] <= 50)
             {
                 // MinVoltage = 6.0 + ((float)mtcu_buffer[2] * 0.2);
             }
@@ -293,7 +298,7 @@ void setChannelsMTCU()
             // The the value passed is 0 it will disable the watchdog, however the feature is disabled by default on each restart so you don't need to do anything if you don't want it.
             // Note also the serial watchdog has no effect when the Scout is running in RC mode.
 
-            if (mtcu_buffer[4] == 0)
+            if (input_line[2] == 0)
             {
                 // SerialWatchdog = false;
             }
@@ -339,7 +344,7 @@ void setChannelsMTCU()
         // case  19 presently un-assigned
         case 19:
             // Throttle position
-            if (mtcu_buffer[4])
+            if (input_line[2])
             {
                 // Throttle = mtcu_buffer[2];
             }
@@ -370,27 +375,27 @@ void setChannelsMTCU()
 
 #if defined REV1_3 || defined REV1_2
 #if defined HIGH_CURRENT
-            if (mtcu_buffer[4] > 0 && mtcu_buffer[4] <= 60)
+            if (input_line[2] > 0 && input_line[2] <= 60)
             {
-                MaxCurrent = mtcu_buffer[4];
+                MaxCurrent = input_line[2];
             }
             else
             {
                 MaxCurrent = 60;
             }
 #elif defined LOW_CURRENT
-            if (mtcu_buffer[4] > 0 && mtcu_buffer[4] <= 6)
+            if (input_line[2] > 0 && input_line[2] <= 6)
             {
-                MaxCurrent = mtcu_buffer[4];
+                MaxCurrent = input_line[2];
             }
             else
             {
                 MaxCurrent = 6;
             }
 #else
-            if (mtcu_buffer[4] > 0 && mtcu_buffer[4] <= 20)
+            if (input_line[2] > 0 && input_line[2] <= 20)
             {
-                MaxCurrent = mtcu_buffer[4];
+                MaxCurrent = input_line[2];
             }
             else
             {
@@ -398,9 +403,9 @@ void setChannelsMTCU()
             }
 #endif
 #elif defined REV1_1
-            if (mtcu_buffer[4] > 0 && mtcu_buffer[4] <= 30)
+            if (input_line[2] > 0 && input_line[2] <= 30)
             {
-                MaxCurrent = mtcu_buffer[4];
+                MaxCurrent = input_line[2];
             }
             else
             {
@@ -453,28 +458,28 @@ void setChannelsMTCU()
             break;
         case 25:
             // Max speed forward set by user in op config
-            if (mtcu_buffer[4])
+            if (input_line[2])
             {
                 // MaxSpeedForward = mtcu_buffer[2];
             }
             break;
         case 26:
             // Max speed reverse set by user in op config
-            if (mtcu_buffer[4])
+            if (input_line[2])
             {
                 // MaxSpeedReverse = mtcu_buffer[2];
             }
             break;
         case 27:
             // Torque modifier for the current selected gear 0-255 = 0 - 100%
-            if (mtcu_buffer[4])
+            if (input_line[2])
             {
                 // GearTorque = mtcu_buffer[2];
             }
             break;
         case 46:
             // Throttle position
-            if (mtcu_buffer[4])
+            if (input_line[2])
             {
                 // Throttle = mtcu_buffer[2];
 #ifdef uart_debug
@@ -485,7 +490,7 @@ void setChannelsMTCU()
             break;
         case 75:
             // Vehicle speed scaled by max speed values
-            if (mtcu_buffer[4])
+            if (input_line[2])
             {
                 // vehicleSpeed = mtcu_buffer[2];
 #ifdef uart_debug
