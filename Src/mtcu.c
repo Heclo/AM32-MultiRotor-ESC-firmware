@@ -199,16 +199,17 @@ void setChannelsMTCU()
         }
       playInputTune();
     }*/
-  for(int i = 0; i< 4;i++)
-        {
-            input_line[i] = mtcu_buffer[i];
-        }
+  
   /*if (mtcu_buffer[1] == MyAddress)
     {
       playDuskingTune();
     }*/
     if (input_line[0] == MyAddress) // for some reason mtcu_buffer[2] is the first byte in the buffer
     {
+      for(int i = 0; i< 4;i++)
+        {
+            input_line[i] = mtcu_buffer[i];
+        }
       //mtcu_buffer[0] = 1;
       //playBrushedStartupTune();
       //playDuskingTune();
