@@ -189,6 +189,7 @@ void ProcessCommand(DataSentence *sentence)
 */
 void setChannelsMTCU()
 {
+  uint8_t startByte = 0;
     uint8_t validData = 0;
   char input_line[5] = {0};
    /*if (mtcu_buffer[0] == MyAddress)
@@ -199,10 +200,27 @@ void setChannelsMTCU()
         }
       playInputTune();
     }*/
-  for(int i = 0; i< 5;i++)
+  /*for(int i = 0; i< 5;i++)
         {
             input_line[i] = mtcu_buffer[i];
+        }*/
+
+  for(int i = 0; i< 4;i++)
+        {
+            if(mtcu_buffer[i] == MyAddress)
+            {
+              startByte = i;
+            }
         }
+  for(int i = 0; i< 4;i++)
+    {
+      startByte = startByte + i 
+        if(startByte > 4)
+      {
+        startByte = startByte - 5;
+      }
+      input_line[i] = mtcu_buffer[startByte];
+    }
   /*if (mtcu_buffer[1] == MyAddress)
     {
       playDuskingTune();
