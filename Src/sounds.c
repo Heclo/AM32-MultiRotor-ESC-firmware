@@ -280,7 +280,7 @@ void playDefaultTone(){
 	delayMillis(150);
 	 LL_IWDG_ReloadCounter(IWDG);
 	TIM1->PSC = 30;
-	delayMillis(150);
+	delayMillis(1500);
 	allOff();
 	TIM1->PSC = 0;
 	signaltimeout = 0;
