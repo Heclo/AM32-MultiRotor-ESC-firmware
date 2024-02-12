@@ -615,7 +615,7 @@ void mtcu_UART_Init(void)
   USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
   USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
   USART_InitStruct.Parity = LL_USART_PARITY_NONE;
-  USART_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
+  USART_InitStruct.TransferDirection = LL_USART_DIRECTION_RX;
   USART_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
   USART_InitStruct.OverSampling = LL_USART_OVERSAMPLING_16;
   LL_USART_Init(USART1, &USART_InitStruct);
