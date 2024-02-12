@@ -190,6 +190,7 @@ void ProcessCommand(DataSentence *sentence)
 void setChannelsMTCU()
 {
   uint8_t startByte = 0;
+  uint8_t tempByte = 0;
     uint8_t validData = 0;
   char input_line[5] = {0};
    /*if (mtcu_buffer[0] == MyAddress)
@@ -214,12 +215,12 @@ void setChannelsMTCU()
         }
   for(int i = 0; i< 4;i++)
     {
-      startByte = startByte + i; 
-        if(startByte > 4)
+      tempByte = startByte + i; 
+        if(tempByte > 4)
       {
-        startByte = startByte - 5;
+        tempByte = tempByte - 5;
       }
-      input_line[i] = mtcu_buffer[startByte];
+      input_line[i] = mtcu_buffer[tempByte];
     }
   /*if (mtcu_buffer[1] == MyAddress)
     {
