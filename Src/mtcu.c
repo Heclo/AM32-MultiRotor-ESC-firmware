@@ -191,14 +191,18 @@ void setChannelsMTCU()
 {
     uint8_t validData = 0;
   static char input_line[4] = {0};
-   if (mtcu_buffer[0] == MyAddress)
+   /*if (mtcu_buffer[0] == MyAddress)
     {
       for(int i = 0; i< 4;i++)
         {
             input_line[i] = mtcu_buffer[i];
         }
       playInputTune();
-    }
+    }*/
+  for(int i = 0; i< 4;i++)
+        {
+            input_line[i] = mtcu_buffer[i];
+        }
   /*if (mtcu_buffer[1] == MyAddress)
     {
       playDuskingTune();
