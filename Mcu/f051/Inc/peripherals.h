@@ -21,6 +21,7 @@ void SystemClock_Config(void);
 void MX_GPIO_Init(void);
 void MX_DMA_Init(void);
 void crsf_UART_Init(void);
+void mtcu_UART_Init(void);
 void MX_COMP1_Init(void);
 void MX_TIM1_Init(void);
 void MX_TIM2_Init(void);
