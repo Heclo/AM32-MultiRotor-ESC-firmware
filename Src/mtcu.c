@@ -214,7 +214,7 @@ void setChannelsMTCU()
         }
   for(int i = 0; i< 4;i++)
     {
-      startByte = startByte + i 
+      startByte = startByte + i; 
         if(startByte > 4)
       {
         startByte = startByte - 5;
