@@ -339,8 +339,7 @@ if (LL_USART_IsActiveFlag_RXNE(USART1)) // USART1.ISR.RXNE set => Byte received
 
 LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_3);
 
-	// reset RTOF:
-    LL_USART_ClearFlag_RTO(USART1);
+	
 	  
 #ifdef USE_CRSF_INPUT
 	setChannels();
@@ -351,7 +350,8 @@ LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_3);
   	receiveMTCU();
 #endif
 
-    
+    // reset RTOF:
+    LL_USART_ClearFlag_RTO(USART1);
 
     // handle timeout (reset receiver state):
     //serialHandleRXTimeout();
