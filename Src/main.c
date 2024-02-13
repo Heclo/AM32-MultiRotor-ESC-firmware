@@ -1320,7 +1320,7 @@ if(send_telemetry){
 		}
 #else
 		signaltimeout++;
-		if(signaltimeout > 5000) { // half second timeout when armed;
+		if(signaltimeout > 10000) { // half second timeout when armed;
 			if(armed){
 				allOff();
 				armed = 0;
