@@ -1787,7 +1787,7 @@ if(newinput > 2000){
   							  maskPhaseInterrupts();
   							brushed_direction_set = 0;
   						  }else{
-  							  //newinput = 1000;
+  							  newinput = 1000;
   						  }
   					  }
   					  adjusted_input = map(newinput, 1000 + (servo_dead_band<<1), 2000, 47, 2047);
@@ -1801,7 +1801,7 @@ if(newinput > 2000){
   							  maskPhaseInterrupts();
   							brushed_direction_set = 0;
   						  }else{
-  							  //newinput = 1000;
+  							  newinput = 1000;
 
   						  }
   					  }
