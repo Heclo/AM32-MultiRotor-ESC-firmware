@@ -1119,8 +1119,7 @@ if(!armed && (cell_count == 0)){
 	  if (input < 47 + (80*use_sin_start)){
 		if(play_tone_flag != 0){
 			if(play_tone_flag == 1){
-				//playDefaultTone();
-				playChangedTone();
+				playDefaultTone();
 
 			}if(play_tone_flag == 2){
 				playChangedTone();
