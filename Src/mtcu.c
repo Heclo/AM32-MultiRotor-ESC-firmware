@@ -26,7 +26,7 @@ void setChannelsMTCU()
   uint8_t startByte = 0;
   uint8_t tempByte = 0;
     uint8_t validData = 0;
-  char input_line[4] = {0};
+  static char input_line[4] = {0};
    
 
   for(int i = 0; i< 100;i++)
