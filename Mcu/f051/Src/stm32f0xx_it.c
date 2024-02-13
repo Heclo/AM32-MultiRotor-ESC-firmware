@@ -351,7 +351,7 @@ LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_3);
     LL_USART_ClearFlag_RTO(USART1);
 
     // handle timeout (reset receiver state):
-    serialHandleRXTimeout();
+    //serialHandleRXTimeout();
   }
 
   /* USER CODE END USART1_IRQn 0 */
