@@ -59,7 +59,7 @@ void setChannelsMTCU()
           //playDuskingTune();
           //playBrushedStartupTune();
           //playInputTune();
-          newInputCarry = 1000;
+          //newInputCarry = 1000;
             validData = 1;
         }
         /*for(int i = 0; i<= SENTENCE_BYTES;i++)
