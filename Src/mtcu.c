@@ -30,7 +30,7 @@ void setChannelsMTCU()
   static uint16_t newInputCarry = 1000;
    
 
-  for(int i = 0; i< 100;i++)
+  for(int i = 0; i< 100;i++) // Search the DMA buffer for start byte; MyAddress
         {
             if(mtcu_buffer[i] == MyAddress)
             {
@@ -38,7 +38,7 @@ void setChannelsMTCU()
               break;
             }
         }
-  for(int i = 0; i< 4;i++)
+  for(int i = 0; i< 4;i++) // Move the 4 bytes of data from the DMA ring buffer to the input_line array
     {
       tempByte = startByte + i; 
         if(tempByte > 99)
