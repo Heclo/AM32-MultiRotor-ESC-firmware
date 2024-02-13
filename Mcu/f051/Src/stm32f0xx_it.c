@@ -335,20 +335,23 @@ if (LL_USART_IsActiveFlag_RXNE(USART1)) // USART1.ISR.RXNE set => Byte received
   }
   else if (LL_USART_IsActiveFlag_RTO(USART1)) // USART6.ISR.RTOF set
   {
-    // RX inter-byte timeout
+    	// RX inter-byte timeout
 
 LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_3);
+
+	// reset RTOF:
+    LL_USART_ClearFlag_RTO(USART1);
+	  
 #ifdef USE_CRSF_INPUT
-    setChannels();
-    receiveCRSF();
+	setChannels();
+    	receiveCRSF();
 #endif
 #ifdef USE_MTCU_INPUT
-  setChannelsMTCU();
-  receiveMTCU();
+  	setChannelsMTCU();
+  	receiveMTCU();
 #endif
 
-    // reset RTOF:
-    LL_USART_ClearFlag_RTO(USART1);
+    
 
     // handle timeout (reset receiver state):
     //serialHandleRXTimeout();
