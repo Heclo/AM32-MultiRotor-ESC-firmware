@@ -223,7 +223,7 @@
 
 uint8_t drive_by_rpm = 1;
 uint32_t MAXIMUM_RPM_SPEED_CONTROL = 10800;
-uint32_t MINIMUM_RPM_SPEED_CONTROL = 120;
+uint32_t MINIMUM_RPM_SPEED_CONTROL = 140;
 
  //assign speed control PID values values are x10000
  fastPID speedPid = {      //commutation speed loop time
@@ -271,15 +271,15 @@ char bi_direction = 1;
 char stuck_rotor_protection = 0;	// Turn off for Crawlers
 char brake_on_stop = 1;
 char stall_protection = 0;
-char use_sin_start = 1;
+char use_sin_start = 0;
 char TLM_ON_INTERVAL = 0;
 uint8_t telemetry_interval_ms = 30;
 uint8_t TEMPERATURE_LIMIT = 255;  // degrees 255 to disable
 char advance_level = 2;			// 7.5 degree increments 0 , 7.5, 15, 22.5)
 uint16_t motor_kv = 1260;
 char motor_poles = 14;
-uint16_t CURRENT_LIMIT = 202;
-uint8_t sine_mode_power = 10;
+uint16_t CURRENT_LIMIT = 30;
+uint8_t sine_mode_power = 8;
 char drag_brake_strength = 10;		// Drag Brake Power when brake on stop is enabled
 uint8_t driving_brake_strength = 10;
 uint8_t dead_time_override = DEAD_TIME;
