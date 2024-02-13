@@ -1044,7 +1044,7 @@ if(!armed && (cell_count == 0)){
 				  				RC_CAR_REVERSE = 0;
 				  			}
 			}else{
-				inputSet = 0;
+				//inputSet = 0;
 				armed_timeout_count =0;
 			}
 			}
