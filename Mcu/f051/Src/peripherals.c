@@ -608,8 +608,8 @@ void mtcu_UART_Init(void)
   LL_DMA_SetMemorySize(DMA1, LL_DMA_CHANNEL_3, LL_DMA_MDATAALIGN_BYTE);
 
   /* USART1 interrupt Init */
-  //NVIC_SetPriority(USART1_IRQn, 2);
-  //NVIC_EnableIRQ(USART1_IRQn);
+  NVIC_SetPriority(USART1_IRQn, 2);
+  NVIC_EnableIRQ(USART1_IRQn);
 
   USART_InitStruct.BaudRate = 115200;
   USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
@@ -632,7 +632,7 @@ void mtcu_UART_Init(void)
   LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_3, 64);
   //USART1->CR1 |= (1<<4); // idle line interrupt: is this the proper way?
 
-MODIFY_REG(USART1->RTOR, USART_RTOR_RTO, 300); // Set RTOR.RTO = 960 (0,1s * 9600baud = 960):
+MODIFY_REG(USART1->RTOR, USART_RTOR_RTO, 300); // Set RTOR.RTO = 1/115200 = 8,68 us * 300 = 2,6ms
 SET_BIT(USART1->CR2, USART_CR2_RTOEN); // Set CR2.RTOEN (enable Receiver Timeout):
 WRITE_REG(USART1->ICR, USART_ICR_RTOCF); // Reset RTOF flag:
 SET_BIT(USART1->CR1, USART_CR1_RTOIE); // Set RTOIE (enable RTO interrupt):
