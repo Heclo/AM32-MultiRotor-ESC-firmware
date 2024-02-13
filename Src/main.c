@@ -1017,7 +1017,7 @@ if(!armed && (cell_count == 0)){
 	if(inputSet){
 		if(adjusted_input == 0){
 			armed_timeout_count++;
-			if(armed_timeout_count > 50000){    // five sec
+			if(armed_timeout_count > 10000){    // one sec
 				if(zero_input_count > 30){
 				armed = 1;
 				#ifdef USE_LED_STRIP
@@ -1044,7 +1044,7 @@ if(!armed && (cell_count == 0)){
 				  				RC_CAR_REVERSE = 0;
 				  			}
 			}else{
-				//inputSet = 0;
+				inputSet = 0;
 				armed_timeout_count =0;
 			}
 			}
@@ -1320,7 +1320,7 @@ if(send_telemetry){
 		}
 #else
 		signaltimeout++;
-		if(signaltimeout > 10000) { // half second timeout when armed;
+		if(signaltimeout > 5000) { // half second timeout when armed;
 			if(armed){
 				allOff();
 				armed = 0;
