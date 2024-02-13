@@ -633,9 +633,9 @@ void mtcu_UART_Init(void)
   //USART1->CR1 |= (1<<4); // idle line interrupt: is this the proper way?
 
 MODIFY_REG(USART1->RTOR, USART_RTOR_RTO, 150); // Set RTOR.RTO = 960 (0,1s * 9600baud = 960):
-SET_BIT(USARTx->CR2, USART_CR2_RTOEN); // Set CR2.RTOEN (enable Receiver Timeout):
+SET_BIT(USART1->CR2, USART_CR2_RTOEN); // Set CR2.RTOEN (enable Receiver Timeout):
 WRITE_REG(USART1->ICR, USART_ICR_RTOCF); // Reset RTOF flag:
-SET_BIT(USARTx->CR1, USART_CR1_RTOIE); // Set RTOIE (enable RTO interrupt):
+SET_BIT(USART1->CR1, USART_CR1_RTOIE); // Set RTOIE (enable RTO interrupt):
 }
 
 void receiveMTCU(){
