@@ -630,7 +630,12 @@ void mtcu_UART_Init(void)
                          (uint32_t)&mtcu_buffer,
                          LL_DMA_GetDataTransferDirection(DMA1, LL_DMA_CHANNEL_3));
   LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_3, 64);
-  USART1->CR1 |= (1<<4); // idle line interrupt: is this the proper way?
+  //USART1->CR1 |= (1<<4); // idle line interrupt: is this the proper way?
+
+MODIFY_REG(USART1->RTOR, USART_RTOR_RTO, 150); // Set RTOR.RTO = 960 (0,1s * 9600baud = 960):
+SET_BIT(USARTx->CR2, USART_CR2_RTOEN); // Set CR2.RTOEN (enable Receiver Timeout):
+WRITE_REG(USART1->ICR, USART_ICR_RTOCF); // Reset RTOF flag:
+SET_BIT(USARTx->CR1, USART_CR1_RTOIE); // Set RTOIE (enable RTO interrupt):
 }
 
 void receiveMTCU(){
