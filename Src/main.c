@@ -511,7 +511,7 @@ char armed = 0;
 uint16_t zero_input_count = 0;
 
 uint16_t input = 0;
-static uint16_t newinput =0;
+uint16_t newinput =0;
 char inputSet = 0;
 char dshot = 0;
 char servoPwm = 0;
