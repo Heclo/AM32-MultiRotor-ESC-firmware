@@ -312,7 +312,7 @@ void TIM16_IRQHandler(void)
 void USART1_IRQHandler(void)
 {
   /* USER CODE BEGIN USART1_IRQn 0 */
-if(LL_USART_IsActiveFlag_IDLE(USART1)){
+/*if(LL_USART_IsActiveFlag_IDLE(USART1)){
 	LL_USART_ClearFlag_IDLE(USART1);
     LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_3);
 #ifdef USE_CRSF_INPUT
@@ -323,8 +323,36 @@ if(LL_USART_IsActiveFlag_IDLE(USART1)){
 #ifdef USE_MTCU_INPUT
   setChannelsMTCU();
   receiveMTCU();
+#endif*/
+if (LL_USART_IsActiveFlag_RXNE(USART1)) // USART1.ISR.RXNE set => Byte received
+  {
+    // Byte in USART1 RX register
+   
+    // Reading USART_RDR register clears RXNE flag.
+    // This reads the USART6.RDR[7:0] register and handles the data
+    //handleRXByte(LL_USART_ReceiveData8(USART1));
+    LL_USART_ClearFlag_RTO(USART1); // for some reason this is already set
+  }
+  else if (LL_USART_IsActiveFlag_RTO(USART1)) // USART6.ISR.RTOF set
+  {
+    // RX inter-byte timeout
+
+LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_3);
+#ifdef USE_CRSF_INPUT
+    setChannels();
+    receiveCRSF();
+#endif
+#ifdef USE_MTCU_INPUT
+  setChannelsMTCU();
+  receiveMTCU();
 #endif
 
+    // reset RTOF:
+    LL_USART_ClearFlag_RTO(USART1);
+
+    // handle timeout (reset receiver state):
+    serialHandleRXTimeout();
+  }
 
   /* USER CODE END USART1_IRQn 0 */
   /* USER CODE BEGIN USART1_IRQn 1 */
