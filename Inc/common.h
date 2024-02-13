@@ -16,7 +16,7 @@ extern uint8_t running;
 extern uint16_t zero_input_count;
 extern uint16_t signaltimeout;
 extern uint16_t input;
-extern static uint16_t newinput;
+extern uint16_t newinput;
 extern char play_tone_flag;
 extern uint32_t current_GPIO_PIN;
 extern GPIO_TypeDef* current_GPIO_PORT;
