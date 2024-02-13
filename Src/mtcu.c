@@ -30,7 +30,7 @@ void setChannelsMTCU()
   static uint16_t newInputCarry = 1000;
    
 
-  for(int i = 0; i< 100;i++) // Search the DMA buffer for start byte; MyAddress
+  /*for(int i = 0; i< 100;i++) // Search the DMA buffer for start byte; MyAddress
         {
             if(mtcu_buffer[i] == MyAddress)
             {
@@ -47,6 +47,13 @@ void setChannelsMTCU()
         tempByte = tempByte - 100;
       }
       input_line[i] = mtcu_buffer[tempByte];
+    }*/
+    if(mtcu_buffer[0] == MyAddress)
+    {
+      for(int i = 0; i< 4;i++)
+        {
+          input_line[i] = mtcu_buffer[i];
+        }
     }
   
     if (input_line[0] == MyAddress) // for some reason mtcu_buffer[2] is the first byte in the buffer
