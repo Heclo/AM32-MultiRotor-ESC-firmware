@@ -27,6 +27,7 @@ void setChannelsMTCU()
   uint8_t tempByte = 0;
     uint8_t validData = 0;
   char input_line[4] = {0};
+  static uint16_t newInputCarry = 1000;
    
 
   for(int i = 0; i< 100;i++)
@@ -58,7 +59,7 @@ void setChannelsMTCU()
           //playDuskingTune();
           //playBrushedStartupTune();
           //playInputTune();
-          newinput = 1000;
+          newInputCarry = 1000;
             validData = 1;
         }
         /*for(int i = 0; i<= SENTENCE_BYTES;i++)
@@ -75,14 +76,14 @@ void setChannelsMTCU()
         {
         case 0:
             // Motor 1 Forward
-            newinput = map(input_line[2], 0, 127, 1000, 2000);
+            newInputCarry = map(input_line[2], 0, 127, 1000, 2000);
             // setSpeed(1, getSpeedCommand_fromSerial(mtcu_buffer[2]));
             break;
 
         case 1:
             // Motor 1 Reverse
             //playInputTune();
-            newinput = map(input_line[2], 0, 127, 1000, 0);
+            newInputCarry = map(input_line[2], 0, 127, 1000, 0);
             // setSpeed(1, -getSpeedCommand_fromSerial(mtcu_buffer[2]));
             break;
 
@@ -356,4 +357,5 @@ void setChannelsMTCU()
     {
         //invalid_crc++;
     }
+  newinput = newInputCarry;
 }
