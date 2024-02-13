@@ -34,6 +34,7 @@ void setChannelsMTCU()
         {
             if(mtcu_buffer[i] == MyAddress)
             {
+              newinput = 1200;
               startByte = i;
               break;
             }
@@ -357,5 +358,5 @@ void setChannelsMTCU()
     {
         //invalid_crc++;
     }
-  newinput = newInputCarry;
+  //newinput = newInputCarry;
 }
