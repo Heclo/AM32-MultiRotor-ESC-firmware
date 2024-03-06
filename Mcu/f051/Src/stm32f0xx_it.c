@@ -324,7 +324,7 @@ void USART1_IRQHandler(void)
   setChannelsMTCU();
   receiveMTCU();
 #endif*/
-if (LL_USART_IsActiveFlag_RXNE(USART1)) // USART1.ISR.RXNE set => Byte received
+if (LL_USART_IsActiveFlag_RXNE(USART1)) // USART1.ISR.RXNE set => Byte received //RXNE = receive buffer not empty
   {
     // Byte in USART1 RX register
    
