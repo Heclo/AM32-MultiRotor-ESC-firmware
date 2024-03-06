@@ -324,7 +324,7 @@ void USART1_IRQHandler(void)
   setChannelsMTCU();
   receiveMTCU();
 #endif*/
-if (LL_USART_IsActiveFlag_RXNE(USART1)) // USART1.ISR.RXNE set => Byte received //RXNE = receive buffer not empty
+/*if (LL_USART_IsActiveFlag_RXNE(USART1)) // USART1.ISR.RXNE set => Byte received //RXNE = receive buffer not empty
   {
     // Byte in USART1 RX register
    
@@ -333,7 +333,7 @@ if (LL_USART_IsActiveFlag_RXNE(USART1)) // USART1.ISR.RXNE set => Byte received 
     //handleRXByte(LL_USART_ReceiveData8(USART1));
     LL_USART_ClearFlag_RTO(USART1); // for some reason this is already set
   }
-  else if (LL_USART_IsActiveFlag_RTO(USART1)) // USART6.ISR.RTOF set
+  else */if (LL_USART_IsActiveFlag_RTO(USART1)) // USART6.ISR.RTOF set
   {
     	// RX inter-byte timeout
 
